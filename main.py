@@ -19,15 +19,15 @@ pygame.display.set_caption("RACE & CHASE by Daulet Batayev")
 clock = pygame.time.Clock()
 
 
-carImg = pygame.image.load('racecar.png')
-car2Img = pygame.image.load('racecar2.png')
-bg = pygame.image.load('bg.png')
-gas = pygame.image.load ('gas.png')
-moving_bg = pygame.image.load('bg1.png')
-moving_grass = pygame.image.load('grass.jpg')
-enemy = pygame.image.load('enemy car.png')
-arrow = pygame.image.load('arrow.png')
-star = pygame.image.load('star.png')
+carImg = pygame.image.load('./external/racecar.png')
+car2Img = pygame.image.load('./external/racecar2.png')
+bg = pygame.image.load('./external/bg.png')
+gas = pygame.image.load ('./external/gas.png')
+moving_bg = pygame.image.load('./external/bg1.png')
+moving_grass = pygame.image.load('./external/grass.jpg')
+enemy = pygame.image.load('./external/enemy car.png')
+arrow = pygame.image.load('./external/arrow.png')
+star = pygame.image.load('./external/star.png')
 
 car_width = 73
 
@@ -46,7 +46,7 @@ def welcome_screen():
 
     TextRect3.center = ((display_width/2), (display_height*0.65))
 
-    name_text_font = pygame.font.Font('ComicSansMS3.ttf', 20)
+    name_text_font = pygame.font.Font('./external/ComicSansMS3.ttf', 20)
     TextSurface4, TextRect4 = text_objects('2019, Daulet Batayev', name_text_font, blue)
     TextRect4.center = ((display_width * 0.80), (display_height * 0.90))
 
@@ -93,12 +93,12 @@ def car_choice_screen():
                 if event1.key == pygame.K_LEFT and arrowx!=display_width*0.315:
                     arrowx = display_width*0.315
                     pygame.mixer.music.stop()
-                    pygame.mixer.music.load("menu.mp3")
+                    pygame.mixer.music.load("./external/menu.mp3")
                     pygame.mixer.music.play(1)
                 if event1.key == pygame.K_RIGHT and arrowx!=display_width *0.685:
                     arrowx = display_width * 0.615
                     pygame.mixer.music.stop()
-                    pygame.mixer.music.load("menu.mp3")
+                    pygame.mixer.music.load("./external/menu.mp3")
                     pygame.mixer.music.play(1)
 
         game_display.fill(white)
@@ -156,7 +156,7 @@ def show_star(starx, stary):
 def check_if_high_score(cur_dodged, high_score):
     if (high_score < cur_dodged):
         high_score = cur_dodged
-        with open("highscore.txt", 'w') as filew:
+        with open("./external/highscore.txt", 'w') as filew:
             filew.write(str(high_score))
 
 def show_high_score(high_score):
@@ -181,7 +181,7 @@ def car(x,y):
 
 def crash():
     pygame.mixer.music.stop()
-    pygame.mixer.music.load("crashsound.mp3")
+    pygame.mixer.music.load("./external/crashsound.mp3")
     pygame.mixer.music.play(1)
     game_display.fill(white)
     message_display('YOU CRASHED')
@@ -207,7 +207,7 @@ def text_objects(text, font, colour):
 
 
 def game_loop():
-    pygame.mixer.music.load("BackgroundMusic.mp3")  # background music
+    pygame.mixer.music.load("./external/BackgroundMusic.mp3")  # background music
     pygame.mixer.music.play(-1)  # playing the music over and over again
 
     x = (display_width * 0.454)  # initial horizontal position of the car
@@ -262,8 +262,8 @@ def game_loop():
 
 
 
-    if (os.path.exists("highscore.txt")):
-        with open('highscore.txt', 'r') as file:
+    if (os.path.exists("./external/highscore.txt")):
+        with open('./external/highscore.txt', 'r') as file:
             high_score = int(file.read())
 
     while game:
